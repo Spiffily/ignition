@@ -13,8 +13,8 @@ from Install import *
 class HomeWindow(Gtk.ApplicationWindow):
     def __init__(self):
         Gtk.Window.__init__(self, title="Ignition")
-        system("mkdir ~/.local/share/ignition/")
-        self.appdata = home+"/.local/share/ignition/"
+        # system("mkdir ~/.local/share/ignition/")
+        # self.appdata = home+"/.local/share/ignition/"
 
         installer = Install()
 
@@ -32,13 +32,44 @@ class HomeWindow(Gtk.ApplicationWindow):
         terminalsnames = ["Tilix", "Terminator", "Gnome Terminal", "Xfce Terminal", "LXTerminal", "XTerm", "MATE Terminal", "Konsole"]
         programmingnames = ["GIT SCM", "VS Code", "Atom", "Sublime", "Android Studio", "Gedit", "Mousepad"]
         mediaproductionnames = ["GIMP Photo Editor", "Blender", "Inkscape", "Open Shot", "Kdenlive", "Krita"]
-        
-        for i in tabsnames:
-            tabgrid = i
-            tabgrid = Gtk.Grid.new()
-            tabs.insert_page(tabgrid, Gtk.Label.new(i), -1)
+        gridlistlist = [basicsnames, launchersnames, browsersnames, cloudnames, gamesnames, officenames, themesnames, medianames, toysnames, terminalsnames, programmingnames, mediaproductionnames]
 
-            # tabgrid.insert()
+        # for i in tabsnames:
+        #     tabgrid = i
+        #     tabgrid = Gtk.Grid.new()
+            # tabs.insert_page(tabgrid, Gtk.Label.new(i), -1)
+        k = 0
+        for gridlist in gridlistlist:
+            name = tabsnames[k]
+            tabgrid = name
+            tabgrid = Gtk.Grid.new()
+
+            print(gridlist)
+
+            row = 0
+            col = 0
+
+            for item in gridlist:
+
+                button = Gtk.Button.new() 
+                button.set_label(item)
+                if col is 0:
+                    # print("Attach")
+                    tabgrid.attach(button, col, row, 2, 1)
+                else:
+                    # print("Attach Next To")
+                    tabgrid.attach_next_to(button, prevbutton, Gtk.PositionType.RIGHT, 2, 1)
+
+                prevbutton = button
+
+                if col >= 7:
+                    row = row + 1
+                    col = 0
+                else:
+                    col = col + 1
+
+            tabs.insert_page(tabgrid, Gtk.Label.new(name), -1)
+            k = k + 1
 
         self.add(tabs)
             
