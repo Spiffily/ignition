@@ -44,7 +44,7 @@ class HomeWindow(Gtk.ApplicationWindow):
             tabgrid = name
             tabgrid = Gtk.Grid.new()
 
-            print(gridlist)
+            # print(gridlist)
 
             row = 0
             col = 0
