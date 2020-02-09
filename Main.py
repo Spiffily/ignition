@@ -20,12 +20,13 @@ class HomeWindow(Gtk.ApplicationWindow):
 
         tabs = Gtk.Notebook.new()
         tabsnames = ["Basics", "Launchers", "Browsers", "Cloud", "Games", "Office", "Themes", "Media", "Toys", "Terminals", "Programming", "Media Production"]
+        
         basicsnames = ["All", "Neofetch", "Gdebi", "Redshift", "Gnome Tweaks", "Baobab", "WINE", "Safe Eyes", "Steamengine Locomotive"]
         launchersnames = ["Synapse", "Plank", "ULauncher", "Cario"]
         browsersnames = ["Chromium", "Firefox", "Midori (Very Light)"]
         cloudnames = ["Google Tools", "YakYak", "Gnome Gmail"]
-        gamesnames = ["Gnome Games", "Steam", "Minecraft", "Super Tux Kart"]
-        officenames = ["Libreoffice", "OPENOFFICE Desktop Editors", "Abiword", "Gnumeric", "Google Tools", "OpenOffice", "ProjectLibre"]
+        gamesnames = ["Gnome Games App", "Steam", "Minecraft", "Gnome Games Suite", "Super Tux Kart"]
+        officenames = ["Libreoffice", "OPENOFFICE Desktop Editors", "Abiword", "Gnumeric", "Google Tools", "microPad", "P3X Onenote", "OpenOffice", "ProjectLibre"]
         themesnames = ["Papirus Icon Theme", "Pocillo Icon Theme", "Faenza Icon Theme", "Pling Store", "XScreenSaver"]
         medianames = ["VLC Media Player", "Rhythmbox", "Spotify", "PAVU Control", "GStreamer Codecs", "Gnome Image Viewer", "Totem"]
         toysnames = ["BB", "AA Lib"]
@@ -33,11 +34,14 @@ class HomeWindow(Gtk.ApplicationWindow):
         programmingnames = ["GIT SCM", "VS Code", "Atom", "Sublime", "Android Studio", "Gedit", "Mousepad"]
         mediaproductionnames = ["GIMP Photo Editor", "Blender", "Inkscape", "Open Shot", "Kdenlive", "Krita"]
         gridlistlist = [basicsnames, launchersnames, browsersnames, cloudnames, gamesnames, officenames, themesnames, medianames, toysnames, terminalsnames, programmingnames, mediaproductionnames]
-
-        # for i in tabsnames:
-        #     tabgrid = i
-        #     tabgrid = Gtk.Grid.new()
-            # tabs.insert_page(tabgrid, Gtk.Label.new(i), -1)
+        allitems = []
+        allitemsmethods = [installer.allbasics(), installer.neofetch(), installer.gdebi(), installer.redshift(), installer.gnometweaks(), installer.baobab(), installer.wine(), installer.safeeyes(), installer.sl(), installer.synapse(), installer.plank(), installer.ulauncher(), installer.cario(), installer.chromium(), installer.firefox(), installer.midori(), installer.googletools(), installer.yakyak(), installer.ggmail(), installer.ggamesapp(), installer.steam(), installer.minecraft(), installer.ggames(), installer.supertuxkart(), installer.libreofficeall(), installer.openofficedesktopeditors(), installer.abiword(), installer.gnumeric(), installer.googletools(), installer.micropad(), installer.p3xonenote(), installer.openoffice(), installer.projectlibre(), installer.papirus(), installer.pocillo(), installer.faenza(), installer.pling(), installer.xscreensaver(), installer.vlc(), installer.rhythmbox(), installer.spotify(), installer.pavucontrol(), installer.gstreamer(), installer.gimageviewer(), installer.totem(), installer.bb(), installer.aalibbin(), installer.tilix(), installer.terminator(), installer.gterminal(), installer.xfceterminal(), installer.lxterminal(), installer.xterm(), installer.mateterminal(), installer.konsole(), installer.git(), installer.code(), installer.atom(), installer.sublime(), installer.androidstudio(), installer.gedit(), installer.mousepad(), installer.gimp(), installer.blender(), installer.inkscape(), installer.openshot(), installer.kdenlive(), installer.krita()]
+        
+        for gridlist in gridlistlist:
+            for item in gridlist:
+                allitems.append(item)
+        print(allitems)
+        
         k = 0
         for gridlist in gridlistlist:
             name = tabsnames[k]
