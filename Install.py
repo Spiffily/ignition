@@ -9,12 +9,21 @@ import sys
 
 class Install():
     def __init__(self):
-        print()
+        print("Installer Ready")
 #  ____            _          
 # | __ )  __ _ ___(_) ___ ___ 
 # |  _ \ / _` / __| |/ __/ __|
 # | |_) | (_| \__ \ | (__\__ \
 # |____/ \__,_|___/_|\___|___/
+    def allbasics(self, button):
+        self.neofetch(button)
+        self.gdebi(button)
+        self.redshift(button)
+        self.gnometweaks(button)
+        self.baobab(button)
+        self.wine(button)
+        self.safeeyes(button)
+        self.sl(button)
 
     def neofetch(self, button):
         print("Installing Neofetch via Aptitude")
@@ -24,9 +33,18 @@ class Install():
         print("Installing RedShift via Aptitude")
         system("pkexec apt-get --yes install redshift && exit")
 
+    def baobab(self, button):
+        print("Installing Baobab via Aptitude")
+
+    def wine(self, button):
+        print("Installing Wine Is Not an Emulator via Aptitude")
+
     def safeeyes(self, button):
         print("Installing Safe Eyes via Aptitude")
         system("pkexec apt-get --yes install safeeyes && exit")
+
+    def sl(self, button):
+        print("Installing Steamengine Locomotive via Aptitude")
 
     def gdebi(self, button):
         print("Installing Gdebi via Aptitude")
@@ -35,6 +53,9 @@ class Install():
     def gnometweaks(self, button):
         print("Installing Gnome-Tweaks via Aptitude")
         system("pkexec apt-get --yes install gnome-tweaks && exit")
+
+    def virtualbox(self, button):
+        print("Installing Oracle VirtualBox via Aptitude")
 #  _                           _                   
 # | |    __ _ _   _ _ __   ___| |__   ___ _ __ ___ 
 # | |   / _` | | | | '_ \ / __| '_ \ / _ \ '__/ __|
@@ -44,6 +65,15 @@ class Install():
     def synapse(self, button):
         print("Installing Synapse via Aptitude")
         system("pkexec apt-get --yes install synapse && exit")
+
+    def plank(self, button):
+        print("Installing Plank dock via Aptitude")
+
+    def ulauncher(self, button):
+        print("Installing ULauncher via Gdebi")
+
+    def cario(self, button):
+        print("Installing Cario dock via Aptitude")
 #  ____                                      
 # | __ ) _ __ _____      _____  ___ _ __ ___ 
 # |  _ \| '__/ _ \ \ /\ / / __|/ _ \ '__/ __|
@@ -62,10 +92,35 @@ class Install():
         print("Installing Firefox via Aptitude")
         system("pkexec apt-get --yes install firefox firefoxdriver firefox-globalmenu && exit")
 
+    def thunderbird(self, button):
+        print("Installing Thunderbird local email client via Aptitude")
+
+    def mailspring(self, button):
+        print("Installing Mailspring via Snapd")
+
     def midori(self, button):
         print("Installing Midori via snapd")
         system("pkexec snap install midori && exit")
 
+    def googleearth(self, button):
+        print("Installing Google Earth via Aptitude")
+#   ____ _                 _ 
+#  / ___| | ___  _   _  __| |
+# | |   | |/ _ \| | | |/ _` |
+# | |___| | (_) | |_| | (_| |
+#  \____|_|\___/ \__,_|\__,_|
+
+    def googletools(self, button):
+        print("Installing Google Tools Desktop via Snapd")
+
+    def yakyak(self, button):
+        print("Installing YakYak via Snapd")
+
+    def ggmail(self, button):
+        print("Installing Gnome Gmail via Snapd")
+
+    def insync3(self, button):
+        print("Installing Insync 3 via Gdebi")
 #   ____                           
 #  / ___| __ _ _ __ ___   ___  ___ 
 # | |  _ / _` | '_ ` _ \ / _ \/ __|
@@ -102,6 +157,12 @@ class Install():
 # | |_| |  _|  _| | (_|  __/
 #  \___/|_| |_| |_|\___\___|
 
+    def libreofficeall(self, button):
+        print("Installing full LibreOffice suite and accessories via Aptitude")
+        print()
+        self.libreoffice(button)
+        self.libreofficeext(button)
+
     def libreoffice(self, button):
         print("Installing full LibreOffice suite via Aptitude")
         system("pkexec apt-get --yes install libreoffice-common libreoffice-writer libreoffice-impress libreoffice-base libreoffice-calc libreoffice-math libreoffice-draw && exit")
@@ -110,9 +171,29 @@ class Install():
         print("Installing LibreOffice suite accessories via Aptitude")
         system("pkexec apt-get --yes install libreoffice-style-sifr libreoffice-java-common libreoffice-pdfimport libreoffice-systray && exit")
 
+    def openofficedesktopeditors(self, button):
+        print("Installing OPENOFFICE Desktop Editors via Snapd")
+
+    def abiword(self, button):
+        print("Installing Abiword via Aptitude")
+
+    def gnumeric(self, button):
+        print("Installing Gnumeric via Aptitude")
+
+    # def googletools()
+
+    def micropad(self, button):
+        print("Installing microPad via Snapd")
+
     def p3xonenote(self, button):
         print("Installing P3X-Onenote")
         system("pkexec snap install p3x-onenote && exit")
+
+    def apacheopenoffice(self, button):
+        print("Installing Apache Open Office suite via Gdebi")
+
+    def projectlibre(self, button):
+        print("Installing Project Libre via Snapd")
 #  _____ _                              
 # |_   _| |__   ___ _ __ ___   ___  ___ 
 #   | | | '_ \ / _ \ '_ ` _ \ / _ \/ __|
@@ -130,6 +211,17 @@ class Install():
         print("Installing Faenza Icon Theme via Aptitude")
         system("pkexec apt-get --yes install faenza-icon-theme && exit")
 
+    def pling(self, button):
+        print("Installing the Pling Store by this process:")
+        print("    1.Download PlingStore_______.AppImage via wget")
+        print("    2.Move it to /usr/share/")
+        print("    3.Mark it as executable by chmod 777")
+        print("    4.Add a .desktop file generated by Ignition to /usr/share/applications/")
+        print()
+
+    def xscreensaver(self, button):
+        print("Installing XScreenSaver v_____ and all screensavers via Aptitude")
+
 #  __  __          _ _       
 # |  \/  | ___  __| (_) __ _ 
 # | |\/| |/ _ \/ _` | |/ _` |
@@ -137,7 +229,28 @@ class Install():
 # |_|  |_|\___|\__,_|_|\__,_|
 
     def vlc(self, button):
-        print("Installing VLC Media Player via Aptitude")
+        print("Installing VLC Media Player and DVD (.VOB) support via Aptitude")
+
+    def rhythmbox(self, button):
+        print("Installing Rhythmbox and all plugins via Aptitude")
+
+    def spotify(self, button):
+        print("Installing Spotify via Snapd")
+
+    def pavucontrol(self, button):
+        print("Installing Pulse Audio VolUme Control via Aptitude")
+
+    def gstreamer(self, button):
+        print("Installing all GStreamer Audio Codecs via Aptitude")
+
+    def flashplayer(self, button):
+        print("Installing Adobe Flash Player support for Chromium and Firefox via Aptitude")
+
+    def gimageviewer(self, button):
+        print("Installing Gnome Image Viewer via Aptitude")
+
+    def totem(self, button):
+        print("Installing Totem (Gnome Videos) via Aptitude")
 #  _____               
 # |_   _|__  _   _ ___ 
 #   | |/ _ \| | | / __|
@@ -146,6 +259,9 @@ class Install():
 #            |___/     
     def bb(self, button):
         print("Installing BB from AA via Aptitude")
+
+    def libaabin(self, button):
+        print("Installing the AA Binary Executable Library from AA via Aptitude")
 
 #  _____                   _             _     
 # |_   _|__ _ __ _ __ ___ (_)_ __   __ _| |___ 
@@ -159,6 +275,24 @@ class Install():
 
     def terminator(self, button):
         print("Installing Terminator via Aptitude")
+
+    def gterminal(self, button):
+        print("Installing Gnome Terminal via Aptitude")
+
+    def xfceterminal(self, button):
+        print("Installing Xfce4 Terminal via Aptitude")
+
+    def lxterminal(self, button):
+        print("Installing Lxterminal via Aptitude")
+
+    def xterm(self, button):
+        print("Installing XTerm via Aptitude")
+
+    def mateterminal(self, button):
+        print("Installing MATE Terminal via Aptitude")
+
+    def konsole(self, button):
+        print("Installing Konsole from KDE via Aptitude")
 #  ____                                                _             
 # |  _ \ _ __ ___   __ _ _ __ __ _ _ __ ___  _ __ ___ (_)_ __   __ _ 
 # | |_) | '__/ _ \ / _` | '__/ _` | '_ ` _ \| '_ ` _ \| | '_ \ / _` |
@@ -177,6 +311,18 @@ class Install():
         print("Installing Atom IDE via snapd")
         system("pkexec snap install atom --classic && exit")
 
+    def sublime(self, button):
+        print("Installing Sublime Text IDE (Trial version) via Snapd")
+
+    def androidstudio(self, button):
+        print("Installing Android Studio from Google via Snapd")
+
+    def gedit(self, button):
+        print("Installing Gedit via Aptitude")
+
+    def mousepad(self, button):
+        print("Installing Lxterminal via Aptitude")
+
     def eclipse(self, button):
         print("Installing Eclipse IDE via snapd")
         system("pkexec snap install eclipse --classic && exit")
@@ -193,3 +339,15 @@ class Install():
 
     def inkscape(self, button):
         print("Installing Inkscape via Snapd")
+
+    def openshot(self, button):
+        print("Installing Open Shot media editor via Aptitude")
+
+    def kdenlive(self, button):
+        print("Installing Kdenlive media editor from KDE via Snapd")
+
+    def krita(self, button):
+        print("Installing Krita via Snapd")
+
+    def ubuntustudio(self, button):
+        print("Installing Ubuntu Studio Installer via Aptitude")
