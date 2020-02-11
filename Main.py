@@ -21,7 +21,7 @@ class HomeWindow(Gtk.ApplicationWindow):
         tabs = Gtk.Notebook.new()
         tabsnames = ["Basics", "Launchers", "Browsers", "Cloud", "Games", "Office", "Themes", "Media", "Toys", "Terminals", "Programming", "Media Production"]
         
-        basicsnames = ["All", "Neofetch", "Gdebi", "Redshift", "Gnome Tweaks", "Baobab", "WINE", "Safe Eyes", "Steamengine Locomotive"]
+        basicsnames = ["All Basics", "Neofetch", "Gdebi", "Redshift", "Gnome Tweaks", "Baobab", "WINE", "Safe Eyes", "Steamengine Locomotive"]
         launchersnames = ["Synapse", "Plank", "ULauncher", "Cario"]
         browsersnames = ["Chromium", "Firefox", "Midori (Very Light)"]
         cloudnames = ["Google Tools", "YakYak", "Gnome Gmail"]
@@ -35,15 +35,18 @@ class HomeWindow(Gtk.ApplicationWindow):
         mediaproductionnames = ["GIMP Photo Editor", "Blender", "Inkscape", "Open Shot", "Kdenlive", "Krita", "Ubuntu Studio"]
         gridlistlist = [basicsnames, launchersnames, browsersnames, cloudnames, gamesnames, officenames, themesnames, medianames, toysnames, terminalsnames, programmingnames, mediaproductionnames]
         allitems = []
-        filler = Gtk.Button.new()
-        allitemsmethods = ["allbasics(filler)", "neofetch(filler)", "gdebi(filler)", "redshift(filler)", "gnometweaks(filler)", "baobab(filler)", "wine(filler)", "safeeyes(filler)", "sl(filler)"", synapse(filler)", "plank(filler)", "ulauncher(filler)", "cario(filler)", "chromium(filler)", "firefox(filler)", "midori(filler)", "googletools(filler)", "yakyak(filler)", "ggmail(filler)", "ggamesapp(filler)", "steam(filler)", "minecraft(filler)", "ggames(filler)", "supertuxkart(filler)", "gnomebreakout(filler)", "libreofficeall(filler)", "openofficedesktopeditors(filler)", "abiword(filler)", "gnumeric(filler)", "googletools(filler)", "micropad(filler)", "p3xonenote(filler)", "apacheopenoffice(filler)", "projectlibre(filler)", "papirus(filler)", "pocillo(filler)", "faenza(filler)", "pling(filler)", "xscreensaver(filler)", "vlc(filler)", "rhythmbox(filler)", "spotify(filler)", "pavucontrol(filler)", "gstreamer(filler)", "gimageviewer(filler)", "totem(filler)", "bb(filler)", "aalibbin(filler)", "tilix(filler)", "terminator(filler)", "gterminal(filler)", "xfceterminal(filler)", "lxterminal(filler)", "xterm(filler)", "mateterminal(filler)", "konsole(filler)", "git(filler)", "code(filler)", "atom(filler)", "sublime(filler)", "androidstudio(filler)", "gedit(filler)", "mousepad(filler)", "eclipse(filler)", "gimp(filler)", "blender(filler)", "inkscape(filler)", "openshot(filler)", "kdenlive(filler)", "krita(filler)", "ubuntustudio(filler)"]
+        # filler = Gtk.Button.new()
+        allitemsmethods = ["allbasics()", "neofetch()", "gdebi()", "redshift()", "gnometweaks()", "baobab()", "wine()", "safeeyes()", "sl()", "synapse()", "plank()", "ulauncher()", "cario()", "chromium()", "firefox()", "midori()", "googletools()", "yakyak()", "ggmail()", "ggamesapp()", "steam()", "minecraft()", "ggames()", "supertuxkart()", "gnomebreakout()", "libreofficeall()", "openofficedesktopeditors()", "abiword()", "gnumeric()", "googletools()", "micropad()", "p3xonenote()", "apacheopenoffice()", "projectlibre()", "papirus()", "pocillo()", "faenza()", "pling()", "xscreensaver()", "vlc()", "rhythmbox()", "spotify()", "pavucontrol()", "gstreamer()", "gimageviewer()", "totem()", "bb()", "aalibbin()", "tilix()", "terminator()", "gterminal()", "xfceterminal()", "lxterminal()", "xterm()", "mateterminal()", "konsole()", "git()", "code()", "atom()", "sublime()", "androidstudio()", "gedit()", "mousepad()", "eclipse()", "gimp()", "blender()", "inkscape()", "openshot()", "kdenlive()", "krita()", "ubuntustudio()"]
         
         for gridlist in gridlistlist:
             for item in gridlist:
                 allitems.append(item)
-        print(allitems)
+        # print(allitems)
+        # print(allitemsmethods)
         
         k = 0
+        installapps = self.get_methods(installer)
+        # print(installapps)
         for gridlist in gridlistlist:
             name = tabsnames[k]
             tabgrid = name
@@ -55,9 +58,10 @@ class HomeWindow(Gtk.ApplicationWindow):
             col = 0
 
             for item in gridlist:
-
+                # allitemmethod = allitemsmethods[k]
                 button = Gtk.Button.new() 
                 button.set_label(item)
+                # button.connect("clicked", installer.allitemmethod)
                 if col is 0:
                     # print("Attach")
                     tabgrid.attach(button, col, row, 2, 1)
@@ -77,9 +81,33 @@ class HomeWindow(Gtk.ApplicationWindow):
             k = k + 1
 
         self.add(tabs)
-            
-    def install(self, button, name):
-        print("Install called")
+
+    def get_methods(self, object):
+        spacing=20
+        methodList = []
+        for method_name in dir(object): 
+            try: 
+                if callable(getattr(object, method_name)): 
+                    methodList.append(str(method_name)) 
+            except: 
+                print("")
+                # methodList.append(str(method_name)) 
+        processFunc = (lambda s: ' '.join(s.split())) or (lambda s: s) 
+        for method in methodList: 
+            try: 
+                print(str(method.ljust(spacing)) + ' ' + 
+                    processFunc(str(getattr(object, method).__doc__)[0:90])) 
+            except: 
+                print(method.ljust(spacing) + ' ' + ' getattr() failed')
+
+        for method in methodList:
+            if method.startswith('_'):
+                methodList.remove(method)
+
+        return methodList 
+
+    # def install(self, button, name):
+    #     print("Install called")
 
 win = HomeWindow()
 
