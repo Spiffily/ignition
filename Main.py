@@ -2,6 +2,7 @@
 from os import * # Import bash run abilities
 from os.path import expanduser
 home = expanduser("~")
+import inspect
 
 import gi # Import GTK Stuff
 gi.require_version('Gtk', '3.0')
@@ -23,15 +24,15 @@ class HomeWindow(Gtk.ApplicationWindow):
         
         basicsnames = ["All Basics", "Neofetch", "Gdebi", "Redshift", "Gnome Tweaks", "Baobab", "WINE", "Safe Eyes", "Steamengine Locomotive"]
         launchersnames = ["Synapse", "Plank", "ULauncher", "Cario"]
-        browsersnames = ["Chromium", "Firefox", "Midori (Very Light)"]
+        browsersnames = ["Chromium", "Chromium on APT", "Firefox", "Midori (Very Light)"]
         cloudnames = ["Google Tools", "YakYak", "Gnome Gmail"]
         gamesnames = ["Gnome Games App", "Steam", "Minecraft", "Gnome Games Suite", "Super Tux Kart", "Gnome Breakout"]
-        officenames = ["Libreoffice", "OPENOFFICE Desktop Editors", "Abiword", "Gnumeric", "Google Tools", "microPad", "P3X Onenote", "OpenOffice", "ProjectLibre"]
+        officenames = ["Libreoffice", "OPENOFFICE Desktop Editors", "Abiword", "Gnumeric", "Google Tools", "microPad", "P3X Onenote", "Apache OpenOffice", "ProjectLibre"]
         themesnames = ["Papirus Icon Theme", "Pocillo Icon Theme", "Faenza Icon Theme", "Pling Store", "XScreenSaver"]
-        medianames = ["VLC Media Player", "Rhythmbox", "Spotify", "PAVU Control", "GStreamer Codecs", "Gnome Image Viewer", "Totem"]
+        medianames = ["VLC Media Player", "Rhythmbox", "Spotify", "PAVU Control", "GStreamer Codecs", "Gnome Image Viewer", "Totem", "Flash Player"]
         toysnames = ["BB", "AA Lib"]
         terminalsnames = ["Tilix", "Terminator", "Gnome Terminal", "Xfce Terminal", "LXTerminal", "XTerm", "MATE Terminal", "Konsole"]
-        programmingnames = ["GIT SCM", "VS Code", "Atom", "Sublime", "Android Studio", "Gedit", "Mousepad"]
+        programmingnames = ["GIT SCM", "VS Code", "Atom", "Sublime", "Android Studio", "Eclipse", "Gedit", "Mousepad"]
         mediaproductionnames = ["GIMP Photo Editor", "Blender", "Inkscape", "Open Shot", "Kdenlive", "Krita", "Ubuntu Studio"]
         gridlistlist = [basicsnames, launchersnames, browsersnames, cloudnames, gamesnames, officenames, themesnames, medianames, toysnames, terminalsnames, programmingnames, mediaproductionnames]
         allitems = []
@@ -42,11 +43,16 @@ class HomeWindow(Gtk.ApplicationWindow):
             for item in gridlist:
                 allitems.append(item)
         # print(allitems)
+        # allitems = sorted(allitems)
+        allitems.sort()
         # print(allitemsmethods)
-        
+        print(allitems)
+
         k = 0
         installapps = self.get_methods(installer)
-        # print(installapps)
+        installapps.sort()
+        print(installapps)
+        prevbutton = []
         for gridlist in gridlistlist:
             name = tabsnames[k]
             tabgrid = name
@@ -85,24 +91,26 @@ class HomeWindow(Gtk.ApplicationWindow):
     def get_methods(self, object):
         spacing=20
         methodList = []
-        for method_name in dir(object): 
-            try: 
-                if callable(getattr(object, method_name)): 
-                    methodList.append(str(method_name)) 
-            except: 
-                print("")
-                # methodList.append(str(method_name)) 
-        processFunc = (lambda s: ' '.join(s.split())) or (lambda s: s) 
-        for method in methodList: 
-            try: 
-                print(str(method.ljust(spacing)) + ' ' + 
-                    processFunc(str(getattr(object, method).__doc__)[0:90])) 
-            except: 
-                print(method.ljust(spacing) + ' ' + ' getattr() failed')
+        methodList = [method_name for method_name in dir(object)
+                  if callable(getattr(object, method_name)) and not method_name.startswith('_')]
+        # for method_name in dir(object): 
+        #     try: 
+        #         if callable(getattr(object, method_name)): 
+        #             methodList.append(str(method_name)) 
+        #     except: 
+        #         print("")
+        #         # methodList.append(str(method_name)) 
+        # processFunc = (lambda s: ' '.join(s.split())) or (lambda s: s) 
+        # for method in methodList: 
+        #     try: 
+        #         print(str(method.ljust(spacing)) + ' ' + 
+        #             processFunc(str(getattr(object, method).__doc__)[0:90])) 
+        #     except: 
+        #         print(method.ljust(spacing) + ' ' + ' getattr() failed')
 
-        for method in methodList:
-            if method.startswith('_'):
-                methodList.remove(method)
+        # for method in methodList:
+        #     if method.startswith('_'):
+        #         methodList.remove(method)
 
         return methodList 
 

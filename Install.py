@@ -16,14 +16,14 @@ class Install():
 # | |_) | (_| \__ \ | (__\__ \
 # |____/ \__,_|___/_|\___|___/
     def allbasics(self):
-        self.neofetch(button)
-        self.gdebi(button)
-        self.redshift(button)
-        self.gnometweaks(button)
-        self.baobab(button)
-        self.wine(button)
-        self.safeeyes(button)
-        self.sl(button)
+        self.neofetch()
+        self.gdebi()
+        self.redshift()
+        self.gnometweaks()
+        self.baobab()
+        self.wine()
+        self.safeeyes()
+        self.sl()
 
     def neofetch(self):
         print("Installing Neofetch via Aptitude")
@@ -160,8 +160,8 @@ class Install():
     def libreofficeall(self):
         print("Installing full LibreOffice suite and accessories via Aptitude")
         print()
-        self.libreoffice(button)
-        self.libreofficeext(button)
+        self.libreoffice()
+        self.libreofficeext()
 
     def libreoffice(self):
         print("Installing full LibreOffice suite via Aptitude")
