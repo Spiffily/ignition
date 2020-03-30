@@ -1,0 +1,7 @@
+[Desktop Entry]
+Version=0.0.2
+Type=Application
+Terminal=false
+Exec=~/ignition/Main.py
+Name=Ignition
+Icon=./
