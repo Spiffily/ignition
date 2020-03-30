@@ -68,7 +68,7 @@ class HomeWindow(Gtk.ApplicationWindow):
                 button = Gtk.Button.new() 
                 button.set_label(item)
                 # button.connect("clicked", installer.allitemmethod)
-                if col is 0:
+                if col == 0:
                     # print("Attach")
                     tabgrid.attach(button, col, row, 2, 1)
                 else:
