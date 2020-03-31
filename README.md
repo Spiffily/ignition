@@ -1,5 +1,5 @@
 # Ignition
-Version 0.0.2 (pre-alpha)
+Version 0.0.2 [![Build Status](https://travis-ci.org/Spiffily/ignition.svg?branch=master)](https://travis-ci.org/Spiffily/ignition)
 
 Download for testing here:
 
