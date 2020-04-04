@@ -1,7 +1,7 @@
 [Desktop Entry]
-Version=0.0.2
+Version=0.0.3
 Type=Application
 Terminal=false
 Exec=python3 ~/ignition/ignition/ignition.py
 Name=Ignition
-Icon=~/ignition/Armature.png
+Icon=~/ignition/Armature.svg

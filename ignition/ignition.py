@@ -17,7 +17,7 @@ class HomeWindow(Gtk.ApplicationWindow):
         # system("mkdir ~/.local/share/ignition/")
         # self.appdata = home+"/.local/share/ignition/"
         self.set_wmclass ("Ignition", "Ignition")
-        self.set_icon_from_file('/home/josh/ignition/Armature.png')
+        self.set_icon_from_file('/home/josh/ignition/Armature.svg')
         installer = Install()
 
         tabs = Gtk.Notebook.new()
@@ -47,12 +47,12 @@ class HomeWindow(Gtk.ApplicationWindow):
         # allitems = sorted(allitems)
         allitems.sort()
         # print(allitemsmethods)
-        print(allitems)
+        #print(allitems)
 
         k = 0
         installapps = self.get_methods(installer)
         installapps.sort()
-        print(installapps)
+        #print(installapps)
         prevbutton = []
         for gridlist in gridlistlist:
             name = tabsnames[k]
