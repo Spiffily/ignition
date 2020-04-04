@@ -1,4 +1,4 @@
-__all__ = ['Igntition']
+__all__ = ['Ignition']
 
 __productname__ = 'Ignition'
 # Expecting trailing "-rcN" or "" for stable releases.
