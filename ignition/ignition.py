@@ -16,7 +16,8 @@ class HomeWindow(Gtk.ApplicationWindow):
         Gtk.Window.__init__(self, title="Ignition")
         # system("mkdir ~/.local/share/ignition/")
         # self.appdata = home+"/.local/share/ignition/"
-
+        self.set_wmclass ("Ignition", "Ignition")
+        self.set_icon_from_file('/home/josh/ignition/Armature.png')
         installer = Install()
 
         tabs = Gtk.Notebook.new()

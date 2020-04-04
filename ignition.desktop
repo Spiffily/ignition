@@ -2,6 +2,6 @@
 Version=0.0.2
 Type=Application
 Terminal=false
-Exec=~/ignition/Main.py
+Exec=python3 ~/ignition/ignition/ignition.py
 Name=Ignition
-Icon=./
+Icon=~/ignition/Armature.png
