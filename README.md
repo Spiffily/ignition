@@ -22,7 +22,7 @@ The Linux world is full of apps. You could be looking for an app that does somet
   | app     | pre-alpha  | -- |
   | run     | good       | `python3 ignition.py` |
   | build   | good       | Still confused about this process, but snapcraft builds it fine. |
-  | publish | **error**      | Learn, debug, work - Error: `/snap/ignition/2/usr/bin/python3: can't open file 'ignition.py': [Errno 2] No such file or directory` |
+  | publish | **error**  | Learn, debug, work - Error: `/snap/ignition/2/usr/bin/python3: can't open file 'ignition.py': [Errno 2] No such file or directory` |
   | backend | *rebuilding* | Thanks Byron! |
   | gui     | *rebuilding* | Rebuilding to consist of a better organized category system and a qeue. |
   | website | notstarted | To be made on github.io |
