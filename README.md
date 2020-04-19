@@ -26,3 +26,32 @@ The Linux world is full of apps. You could be looking for an app that does somet
   | backend | *rebuilding* | Thanks Byron! |
   | gui     | *rebuilding* | Rebuilding to consist of a better organized category system and a qeue. |
   | website | notstarted | To be made on github.io |
+
+
+## Ideas
+
+### Package Managers
+The system would be divided into package manager options. The italicized options would be available right away:
+- _apt_
+- _snapd_
+- _.deb_
+- flatpak
+- npm
+- .AppImage
+- _.sh_
+
+### App Categories
+App categories will be divided like this (maybe with some small revisions):
+- Basics (and Personalization)
+- Web Browsers and Communication
+- Cloud and File Sharing
+- Games (different from Gaming)
+- Security
+- Office
+- Professional (I think this needs a different name)
+  - Programming
+  - Media Production
+  - Gaming
+  - Super User (aka Hacking tools)
+  - Engineering
+  - More...
