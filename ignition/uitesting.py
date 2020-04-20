@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+from os import * # Import bash run abilities
+from os.path import expanduser
+home = expanduser("~")
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
@@ -10,7 +13,7 @@ class ListBoxWindow(Gtk.Window):
         self.set_border_width(10)
         self.set_size_request(720, 512)
         self.set_wmclass ("Ignition", "Ignition")
-        self.set_icon_from_file('/home/josh/ignition/Armature.svg')
+        self.set_icon_from_file(home+'/ignition/ignition/Armature.svg')
 
         
     # Apps are laid out like this: package_name = ['Nice Name', ['defaultsource', 'othersources'], 'extras_sh_name', 'command']
