@@ -4,17 +4,30 @@ from os.path import expanduser
 home = expanduser("~")
 import gi
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk
+from gi.repository import Gtk, GLib
+import time
+
 
 class ListBoxWindow(Gtk.Window):
 
     def __init__(self):
         Gtk.Window.__init__(self, title="Ignition Layout")
         self.set_border_width(10)
-        self.set_size_request(720, 512)
-        self.set_wmclass ("Ignition", "Ignition")
+        self.set_size_request(1024, 720)
+        # self.set_wmclass ("Ignition", "Ignition") # Can be commented out while debuging, but should be uncommented for build
         self.set_icon_from_file(home+'/ignition/ignition/Armature.svg')
-
+        
+        apps_to_install = ['vlc', 'chrome'] # The master list of apps to be installed.
+        head = Gtk.HeaderBar()
+        self.set_titlebar(head)
+        head.set_title('Ignition')
+        head.set_show_close_button(True)
+        install_button = Gtk.Button(label='Install')
+        install_button.connect('clicked', self.install)
+        # show_qeue_button = Gtk.Button(label='Qeue')
+        head.pack_end(install_button) #pack Install button
+        # head.pack_end(show_qeue_button) #pack Qeue button
+        painsize = 610
         
     # Apps are laid out like this: package_name = ['Nice Name', ['defaultsource', 'othersources'], 'extras_sh_name', 'command']
         #Personalization Apps
@@ -62,37 +75,41 @@ class ListBoxWindow(Gtk.Window):
         # categories = ['Home', 'Personalization', 'Internet', 'Utilities', 'Games', 'Security', 'Office']
         categories = [hometypes, personalizationtypes, internettypes, mediatypes]
 
-        # box_home = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
-
+        pains = Gtk.Paned()
         categoryselect = Gtk.Notebook()
-        #categoryselect.popup_enable()
+        queue = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        pains.add1(categoryselect)
+        # pains.add2(queue)
+        pains.set_position(1024)
+        pains.set_wide_handle(True)
         categoryselect.set_show_tabs(True)
         categoryselect.set_show_border(True)
-        self.add(categoryselect)
-        for appcategory in categories:
+        self.add(pains)
+        # Draw the app selection part
+        for appcategory in categories: # Make the App Category tabs at the top and fill them. (ex. Internet)
             categoryname = appcategory[0]
             box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
             categoryselect.insert_page(box, Gtk.Label(label=categoryname), -1)
             appcategory.remove(categoryname)
             # print(appcategory.lower()+'types')
-            for apptype in appcategory:
+            for apptype in appcategory: # Draw the subcategories of apps and fill them. (Ex. Browsers, Communication)
                 typebox = Gtk.ListBox()
                 typebox.set_selection_mode(Gtk.SelectionMode.NONE) #(NONE, SINGLE, BROWSE, or MULTIPLE)
                 typetitlerow = Gtk.ListBoxRow()
                 typetitlerow.add(Gtk.Label(label=apptype[0]))
                 apptype.remove(apptype[0])
                 typebox.add(typetitlerow)
-                print(apptype)
-                for app in apptype:
+                # print(apptype)
+                for app in apptype: # Draw each app and all it's widgets. (Ex. Google Chrome, Chromium, Firefox)
                     # print(app)
                     try:
-                        print(app)
-                        appname = app[0]
-                        appsources = app[1]
-                        appextras = app[2]
-                        print(appname)
-                        print(appsources)
-                        print(appextras)
+                        # print(app)
+                        appname = app[0] # Set the appname from the lists
+                        appsources = app[1] # Make a list of sources from the list
+                        appextras = app[2] # If there's a bash script to install extras, set it's name from the list
+                        # print(appname)
+                        # print(appsources)
+                        # print(appextras)
 
                         row = Gtk.ListBoxRow()
                         hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=15)
@@ -103,7 +120,7 @@ class ListBoxWindow(Gtk.Window):
 
                         typebox.add(row)
                     except:
-                        print('App not loaded')
+                        print('ERROR: App not loaded')
                 box.add(typebox)
 
 
@@ -130,9 +147,31 @@ class ListBoxWindow(Gtk.Window):
             # # hbox.pack_start(extraswitch, False, True, 0)
 
             # listbox.add(row)
+            self.apps_to_install = apps_to_install
+
+    def main(self):
+        while(not Gtk.events_pending()):
+
+            # winheight = 0
+            # winwidth = 0
+            winwidth = self.get_size()[0]
+            time.sleep(1)
+            print()
+            print('Window width: ')
+            print(winwidth)
+
+    def install(self, button):
+        print('Installing apps!')
+        for app in self.apps_to_install:
+            try:
+                print('Installing app')
+
+            except:
+                print('ERROR: There was a problem installing this app.')
 
         
 win = ListBoxWindow()
 win.connect("destroy", Gtk.main_quit)
 win.show_all()
+GLib.idle_add(win.main)
 Gtk.main()
