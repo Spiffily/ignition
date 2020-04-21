@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
+import os
 from os import * # Import bash run abilities
 from os.path import expanduser
 home = expanduser("~")
+path = os.getcwd()
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, GLib
@@ -15,7 +17,7 @@ class ListBoxWindow(Gtk.Window):
         self.set_border_width(10)
         self.set_size_request(1024, 720)
         # self.set_wmclass ("Ignition", "Ignition") # Can be commented out while debuging, but should be uncommented for build
-        self.set_icon_from_file(home+'/ignition/ignition/Armature.svg')
+        self.set_icon_from_file(path+'/Armature.svg')
         
         apps_to_install = ['vlc', 'chrome'] # The master list of apps to be installed.
         head = Gtk.HeaderBar()
@@ -151,7 +153,7 @@ class ListBoxWindow(Gtk.Window):
 
     def main(self):
         while(not Gtk.events_pending()):
-
+            
             # winheight = 0
             # winwidth = 0
             winwidth = self.get_size()[0]
