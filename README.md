@@ -1,5 +1,5 @@
 # Ignition
-Version 0.0.3 [![Build Status](https://travis-ci.org/Spiffily/ignition.svg?branch=master)](https://travis-ci.org/Spiffily/ignition)
+Version 0.0.3 [![Build Status](https://travis-ci.org/Spiffily/ignition.svg?branch=master)](https://travis-ci.org/Spiffily/ignition) [![Join the chat at https://gitter.im/Spiffily/ignition](https://badges.gitter.im/Spiffily/ignition.svg)](https://gitter.im/Spiffily/ignition?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Hit the ground running on your fresh Ubuntu installation.
 
