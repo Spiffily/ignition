@@ -2,7 +2,7 @@ __all__ = ['Ignition']
 
 __productname__ = 'Ignition'
 # Expecting trailing "-rcN" or "" for stable releases.
-__version__     = "0.0.3"
+__version__     = "0.0.4"
 __copyright__   = "Copyright 2020 Josh L & contributors"
 __author__      = "Josh L"
 __author_email__= "sillynoodle36@gmail.com"

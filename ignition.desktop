@@ -1,5 +1,5 @@
 [Desktop Entry]
-Version=0.0.3
+Version=0.0.4
 Type=Application
 Terminal=false
 Exec=python3 ~/ignition/ignition/ignition.py
