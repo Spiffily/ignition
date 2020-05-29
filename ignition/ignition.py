@@ -7,11 +7,51 @@ path = os.getcwd()
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, GLib
-import time
 
+data = home+'/.local/share/ignition/'
+config = home+'/.config/ignition/'
+system('mkdir '+data)
+system('mkdir '+config)
 
-class ListBoxWindow(Gtk.Window):
+class App():
+    def __init__(self, package, name, sources, description):
+        self.package = package
+        self.script = data+'sh/'+package+'.sh'
+        self.name = name
+        self.sources = sources
+        self.description = description
+        # print(self.script)
 
+vlc = App('vlc', 'VLC', ['apt', 'snap', 'pacman'], 'A robust media player that will play pretty much anything.')
+
+class AppList(Gtk.Notebook):
+    def __init__(self):
+        catHome = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+        catPersonalization = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+        catInternet = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+        catMedia = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+        catGames = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+        catSecurity = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+        catOffice = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+
+        catProgramming = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+        catMediaProduction = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+        catGaming = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+        catSuperUser = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+        catEngineering = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+
+        # categories = Gtk.Notebook()
+        self.insert_page(catHome, Gtk.Label(label='Home'), -1)
+        self.insert_page(catPersonalization, Gtk.Label(label='Personalization'), -1)
+        self.insert_page(catInternet, Gtk.Label(label='Internet'), -1)
+        self.insert_page(catMedia, Gtk.Label(label='Media'), -1)
+        self.insert_page(catGames, Gtk.Label(label='Games'), -1)
+        self.insert_page(catSecurity, Gtk.Label(label='Security'), -1)
+        self.insert_page(catOffice, Gtk.Label(label='Office'), -1)
+
+        # self.insert(categories)
+
+class Window(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self, title="Ignition Layout")
         self.set_border_width(10)
@@ -19,64 +59,17 @@ class ListBoxWindow(Gtk.Window):
         # self.set_wmclass ("Ignition", "Ignition") # Can be commented out while debuging, but should be uncommented for build
         self.set_icon_from_file(path+'/Armature.svg')
         
-        apps_to_install = ['vlc', 'vivaldi'] # The master list of apps to be installed.
+        apps_to_install = [] # The master list of apps to be installed.
         head = Gtk.HeaderBar()
         self.set_titlebar(head)
         head.set_title('Ignition')
         head.set_show_close_button(True)
         install_button = Gtk.Button(label='Install')
-        install_button.connect('clicked', self.install)
+        # install_button.connect('clicked', self.install)
         # show_qeue_button = Gtk.Button(label='Qeue')
         head.pack_end(install_button) #pack Install button
         # head.pack_end(show_qeue_button) #pack Qeue button
         painsize = 610
-        
-    # Apps are laid out like this: package_name = ['Nice Name', ['defaultsource', 'othersources'], '~/.config/directory']
-        #Personalization Apps
-        ## Launchers
-        synapse = ['Synapse', ['apt'], '']
-        plank = ['Plank', ['apt'], '']
-        
-        ## Stores
-        gnome_software = ['Gnome Software', ['apt'], '']
-
-        #Internet Apps
-        ## Browsers
-        chromium = ['Google Chrome', ['deb', 'snap', 'apt', 'pacman'], '']
-        vivaldi = ['Vivaldi', ['deb'], '']
-        # chromium = ['Chromium', ['snap'], '']
-        firefox = ['Firefox', ['apt'], '']
-        midori = ['Midori', ['snap'], '']
-
-        #Media Apps
-        ## Players
-        vlc = ['VLC Media Player', ['snap', 'apt'], '']
-
-        ## Codecs
-        gstreamer_codecs = ['GStreamer Codecs', ['apt'], '']
-        
-        #Personalization App Types
-        personalizationtypelaunchers = ['App Launchers', synapse, plank]
-        personalizationtypestores = ['Stores', gnome_software]
-
-        #Internet App Types
-        internettypebrowsers = ['Web Browsers', chromium, vivaldi, firefox, midori]
-
-        #Media App Types
-        mediatypeplayers = ['Media Players', vlc]
-        mediatypecodecs = ['Media Codecs', gstreamer_codecs]
-
-        #App Categories
-        hometypes = ['Home']
-        personalizationtypes = ['Personalization', personalizationtypelaunchers, personalizationtypestores]
-        internettypes = ['Internet', internettypebrowsers]
-        mediatypes = ['Media', mediatypeplayers, mediatypecodecs]
-        # utilitiestypes = ['Nextcloud', 'Insync', 'Magic Wormhole', 'Barrier']
-        # gamestypes = ['Gnome Games Collection', 'SuperTuxKart', 'Gnome Breakout', '0ad', 'GNU Jump', 'Micropolis']
-        # securitytypes = ['Ufw', 'Canonical Livepatch', 'Macchanger', 'ClamTK', 'RKHunter']
-        # officetypes = ['LibreOffice', 'ONLYOFFICE Desktop Editors', 'Abiword', 'Gnumeric', 'P3X Onenote']
-        # categories = ['Home', 'Personalization', 'Internet', 'Utilities', 'Games', 'Security', 'Office']
-        categories = [hometypes, personalizationtypes, internettypes, mediatypes]
 
         pains = Gtk.Paned()
         categoryselect = Gtk.Notebook()
@@ -88,93 +81,13 @@ class ListBoxWindow(Gtk.Window):
         categoryselect.set_show_tabs(True)
         categoryselect.set_show_border(True)
         self.add(pains)
-        # Draw the app selection part
-        for appcategory in categories: # Make the App Category tabs at the top and fill them. (ex. Internet)
-            categoryname = appcategory[0]
-            box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
-            categoryselect.insert_page(box, Gtk.Label(label=categoryname), -1)
-            appcategory.remove(categoryname)
-            # print(appcategory.lower()+'types')
-            for apptype in appcategory: # Draw the subcategories of apps and fill them. (Ex. Browsers, Communication)
-                typebox = Gtk.ListBox()
-                typebox.set_selection_mode(Gtk.SelectionMode.NONE) #(NONE, SINGLE, BROWSE, or MULTIPLE)
-                typetitlerow = Gtk.ListBoxRow()
-                typetitlerow.add(Gtk.Label(label=apptype[0]))
-                apptype.remove(apptype[0])
-                typebox.add(typetitlerow)
-                # print(apptype)
-                for app in apptype: # Draw each app and all it's widgets. (Ex. Google Chrome, Chromium, Firefox)
-                    # print(app)
-                    try:
-                        # print(app)
-                        appname = app[0] # Set the appname from the lists
-                        appsources = app[1] # Make a list of sources from the list
-                        appconfig = app[2] # If a config dir is specified, get it.
-                        # print(appname)
-                        # print(appsources)
-                        # print(appextras)
 
-                        row = Gtk.ListBoxRow()
-                        hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=15)
-                        row.add(hbox)
-                        to_install_switch = Gtk.Switch()
-                        hbox.pack_start(to_install_switch, False, True, 0)
-                        hbox.pack_start(Gtk.Label(label=appname), False, True, 0)
-
-                        typebox.add(row)
-                    except:
-                        print('ERROR: App not loaded')
-                box.add(typebox)
+        # categories = AppList()
+        # self.insert(categories)
 
 
-            # listbox = Gtk.ListBox()
-            # listbox.set_selection_mode(Gtk.SelectionMode.NONE) #(NONE, SINGLE, BROWSE, or MULTIPLE)
-            # box_home.pack_start(listbox, True, True, 0)
-
-            # row = Gtk.ListBoxRow()
-            # hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=15)
-            # row.add(hbox)
-            # label = Gtk.Label(label="VLC Media Player")
-            # check = Gtk.CheckButton()
-            # hbox.pack_start(check, False, True, 0)
-            # hbox.pack_start(label, False, True, 0)
-            # # hbox.pack_start(Gtk.Widget(), True, False, 0)
-            # combo = Gtk.ComboBoxText()
-            # combo.insert(0, "0", "Aptitude")
-            # combo.insert(1, "1", "Snappy")
-            # combo.set_active(1)
-            # # hbox.pack_start(Gtk.Label(label="Source:"), False, True, 0)
-            # # hbox.pack_start(combo, False, True, 0)
-            # # extraswitch = Gtk.Switch()
-            # # hbox.pack_start(Gtk.Label(label="Extras:"), False, True, 0)
-            # # hbox.pack_start(extraswitch, False, True, 0)
-
-            # listbox.add(row)
-            self.apps_to_install = apps_to_install
-
-    def main(self):
-        while(not Gtk.events_pending()):
-            
-            # winheight = 0
-            # winwidth = 0
-            winwidth = self.get_size()[0]
-            time.sleep(1)
-            print()
-            print('Window width: ')
-            print(winwidth)
-
-    def install(self, button):
-        print('Installing apps!')
-        for app in self.apps_to_install:
-            try:
-                print('Installing '+app)
-
-            except:
-                print('ERROR: There was a problem installing '+app)
-
-        
-win = ListBoxWindow()
+win = Window()
 win.connect("destroy", Gtk.main_quit)
 win.show_all()
-GLib.idle_add(win.main)
+# GLib.idle_add(win.main)
 Gtk.main()
