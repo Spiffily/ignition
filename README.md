@@ -23,7 +23,7 @@ The Linux world is full of apps. You could be looking for an app that does somet
 | run     | good       | `python3 ignition.py` |
 | build   | good       | Still confused about this process, but snapcraft builds it fine. |
 | publish | **error**  | Learn, debug, work - Error: `/snap/ignition/2/usr/bin/python3: can't open file 'ignition.py': [Errno 2] No such file or directory` |
-| backend | *rebuilding* | Thanks Byron! |
+| backend | *rebuilding* | Rebuilding to use a flexible bash script-based backend. |
 | gui     | *rebuilding* | Rebuilding to consist of a better organized category system and a qeue. |
 | website | notstarted | To be made on github.io |
 
@@ -35,7 +35,7 @@ The system would be divided into package manager options. The italicized options
 - _apt_
 - _snapd_
 - _.deb_
-- flatpak
+- _flatpak_
 - npm
 - .AppImage
 - _.sh_
@@ -44,7 +44,7 @@ The system would be divided into package manager options. The italicized options
 App categories will be divided like this (maybe with some small revisions):
 - Personalization
 - Internet
-- File Management
+- Media
 - Games (different from Gaming)
 - Security
 - Office
