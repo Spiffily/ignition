@@ -19,7 +19,7 @@ class ListBoxWindow(Gtk.Window):
         # self.set_wmclass ("Ignition", "Ignition") # Can be commented out while debuging, but should be uncommented for build
         self.set_icon_from_file(path+'/Armature.svg')
         
-        apps_to_install = ['vlc', 'chrome'] # The master list of apps to be installed.
+        apps_to_install = ['vlc', 'vivaldi'] # The master list of apps to be installed.
         head = Gtk.HeaderBar()
         self.set_titlebar(head)
         head.set_title('Ignition')
@@ -31,7 +31,7 @@ class ListBoxWindow(Gtk.Window):
         # head.pack_end(show_qeue_button) #pack Qeue button
         painsize = 610
         
-    # Apps are laid out like this: package_name = ['Nice Name', ['defaultsource', 'othersources'], 'extras_sh_name', 'command']
+    # Apps are laid out like this: package_name = ['Nice Name', ['defaultsource', 'othersources'], '~/.config/directory']
         #Personalization Apps
         ## Launchers
         synapse = ['Synapse', ['apt'], '']
@@ -42,8 +42,9 @@ class ListBoxWindow(Gtk.Window):
 
         #Internet Apps
         ## Browsers
-        google_chrome = ['Google Chrome', ['deb'], '']
-        chromium = ['Chromium', ['snap'], '']
+        chromium = ['Google Chrome', ['deb', 'snap', 'apt', 'pacman'], '']
+        vivaldi = ['Vivaldi', ['deb'], '']
+        # chromium = ['Chromium', ['snap'], '']
         firefox = ['Firefox', ['apt'], '']
         midori = ['Midori', ['snap'], '']
 
@@ -59,7 +60,7 @@ class ListBoxWindow(Gtk.Window):
         personalizationtypestores = ['Stores', gnome_software]
 
         #Internet App Types
-        internettypebrowsers = ['Web Browsers', google_chrome, chromium, firefox, midori]
+        internettypebrowsers = ['Web Browsers', chromium, vivaldi, firefox, midori]
 
         #Media App Types
         mediatypeplayers = ['Media Players', vlc]
@@ -108,7 +109,7 @@ class ListBoxWindow(Gtk.Window):
                         # print(app)
                         appname = app[0] # Set the appname from the lists
                         appsources = app[1] # Make a list of sources from the list
-                        appextras = app[2] # If there's a bash script to install extras, set it's name from the list
+                        appconfig = app[2] # If a config dir is specified, get it.
                         # print(appname)
                         # print(appsources)
                         # print(appextras)
@@ -166,10 +167,10 @@ class ListBoxWindow(Gtk.Window):
         print('Installing apps!')
         for app in self.apps_to_install:
             try:
-                print('Installing app')
+                print('Installing '+app)
 
             except:
-                print('ERROR: There was a problem installing this app.')
+                print('ERROR: There was a problem installing '+app)
 
         
 win = ListBoxWindow()
