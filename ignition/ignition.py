@@ -22,12 +22,37 @@ class App():
         self.description = description
         # print(self.script)
 
+    def row(self):
+        switch = Gtk.Switch()
+        box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+        box.pack_start(switch, False, False, 2)
+        box.pack_start(Gtk.Label(label=self.name), False, False, 0)
+
+        return box
+
 vlc = App('vlc', 'VLC', ['apt', 'snap', 'pacman'], 'A robust media player that will play pretty much anything.')
 
 class AppList(Gtk.Notebook):
     def __init__(self):
+        Gtk.Notebook.__init__(self)
+        # Home
         catHome = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+        catHome.pack_start(Gtk.Label(label='Hello!'), False, False, 1)
+
+        # Personalization
         catPersonalization = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+        launchers = Gtk.ListBox()
+        launchers.set_selection_mode(Gtk.SelectionMode.BROWSE)
+        # catPersonalization.pack_start(Gtk.Label(label='Launchers'), False, False, 0)
+        catPersonalization.pack_start(launchers, False, False, 0)
+        row = Gtk.ListBoxRow()
+        row.add(Gtk.Label(label='Launchers'))
+        row.set_selectable(False)
+        launchers.add(row)
+        row = Gtk.ListBoxRow()
+        row.add(vlc.row())
+        launchers.add(row)
+
         catInternet = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         catMedia = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         catGames = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
@@ -39,6 +64,8 @@ class AppList(Gtk.Notebook):
         catGaming = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         catSuperUser = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         catEngineering = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+
+        
 
         # categories = Gtk.Notebook()
         self.insert_page(catHome, Gtk.Label(label='Home'), -1)
@@ -80,10 +107,10 @@ class Window(Gtk.Window):
         pains.set_wide_handle(True)
         categoryselect.set_show_tabs(True)
         categoryselect.set_show_border(True)
-        self.add(pains)
+        # self.add(pains)
 
-        # categories = AppList()
-        # self.insert(categories)
+        categories = AppList()
+        self.add(categories)
 
 
 win = Window()
