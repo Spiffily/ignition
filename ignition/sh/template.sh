@@ -1,6 +1,7 @@
 #!/bin/bash
 operation=$1
 source=$2
+url=''
 
 package='gnome-software'
 apt=true
@@ -8,6 +9,8 @@ snap=true
 deb=true
 pacman=true
 flatpak=true
+appimage=true
+sh=false
 # package=$3 #For debugging purposes only
 
 if [[ $operation == 'install' ]]; then
@@ -16,11 +19,29 @@ if [[ $operation == 'install' ]]; then
     elif [[ $source == 'snap' && $snap == 'true' ]]; then
         sudo snap install $package
     elif [[ $source == 'deb' && $deb == 'true' ]]; then
-        sudo gdebi -n $package
+        mkdir ~/Downloads/
+        cd ~/Downloads/
+        wget $url.deb
+        sudo gdebi -n $package.deb
+        rm $package.deb
     elif [[ $source == 'pacman' && $pacman == 'true' ]]; then
         sudo pacman -S $package
+        # git clone $url; cd $package; makepkg -si # aur instead of pacman
     elif [[ $source == 'flatpak' && $flatpak == 'true' ]]; then
         sudo flatpak install $package
+    elif [[ $source == 'appimage' && $appimage == 'true' ]]; then
+        mkdir $HOME/apps/; cd $HOME/apps/
+        wget $url
+        chmod a+x $package.AppImage
+        echo "[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=exit
+Name=Default
+Icon=application-x-executable" >> $HOME/.local/share/applications/$package.desktop
+    elif [[ $source == 'sh' && $sh == 'true']]; then
+        # bash $package.sh or commands
     else
         echo -e '\e[91mERROR:\e[0m \e[33m'$package'\e[0m is not available as \e[94m'$source'\e[0m.'
         exit 1;
@@ -34,9 +55,14 @@ elif [[ $operation == 'remove' ]]; then
     elif [[ $source == 'deb' && $deb == 'true' ]]; then
         sudo apt-get remove -y $package
     elif [[ $source == 'pacman' && $pacman == 'true' ]]; then
-        sudo pacman -? $package
+        sudo pacman -Rs $package
     elif [[ $source == 'flatpak' && $flatpak == 'true' ]]; then
-        sudo flatpak remove $package
+        sudo flatpak uninstall $package
+    elif [[ $source == 'appimage' && $appimage == 'true' ]]; then
+        rm $HOME/apps/$package
+        rm $HOME/.local/share/applications/$package.desktop
+    elif [[ $source == 'sh' && $sh == 'true']]; then
+        # It depends
     else
         echo -e '\e[91mERROR:\e[0m \e[33m'$package'\e[0m is not available as \e[94m'$source'\e[0m.'
         exit 1;
@@ -53,6 +79,10 @@ elif [[ $operation == 'check' ]]; then
         pacman -Q | grep $package
     elif [[ $source == 'flatpak' && $flatpak == 'true' ]]; then
         flatpak list | grep $package
+    elif [[ $source == 'appimage' && $appimage == 'true' ]]; then
+        ls $HOME/.local/share/applications | grep $package
+    elif [[ $source == 'sh' && $sh == 'true']]; then
+        # It depends
     else
         echo -e '\e[91mERROR:\e[0m \e[33m'$package'\e[0m is not available as \e[94m'$source'\e[0m.'
         exit 1;
