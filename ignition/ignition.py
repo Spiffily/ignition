@@ -30,7 +30,50 @@ class App():
 
         return box
 
-vlc = App('vlc', 'VLC', ['apt', 'snap', 'pacman'], 'A robust media player that will play pretty much anything.')
+# Personalization
+## Launchers
+synapse = App('synapse', 'Synapse', ['apt', 'pacman'], 'Semantic app and file launcher. Good alternative to Spotlight.')
+ulauncher = App('ulauncher', 'uLauncher', ['deb', 'pacman'], 'Modern and shiny launcher that provides fuzzy search, extensions, and themes.')
+plank = App('plank', 'Plank', ['apt', 'pacman'], 'Stupidly simple.')
+## App Centers
+gnome_software = App('gnome-software', 'Gnome Software', ['apt', 'snap', 'pacman'], 'GNOME\'s graphical software management tool.')
+pling = App('pling', 'Pling Store', ['appimage', 'deb'], '')
+discover = App('discover', 'KDE Discover', ['apt', 'pacman'], 'Application Installer for the 22nd Century.')
+software_boutique = App('software-boutique', 'Software Boutique', ['apt'], '')
+
+# Internet
+## Web Browsers
+chrome = App('chrome', 'Google Chrome', ['deb', 'pacman', 'snap', 'apt'], '')
+vivaldi = App('vivaldi', 'Vivaldi', ['deb', 'pacman'], '')
+firefox = App('firefox', 'Firefox', ['apt','pacman', 'snap', 'flatpak', 'sh'], '')
+epiphany = App('epiphany', 'GNOME Web', ['apt', 'flatpak', 'pacman', 'snap'], 'Simple web browser for GNOME. Similar to Apple\'s Safari.')
+midori = App('midori', 'Midori', ['snap', 'pacman', 'apt', 'deb', 'flatpak'], '')
+# opera = App('')
+## Internet Messagers
+discord = App('discord', 'Discord', ['apt', 'pacman', 'snap', 'flatpak', 'deb'], '')
+yakyak = App('yakyak', 'YakYak', ['apt', 'snap', 'pacman', 'deb'], 'A desktop client for Google Hangouts. It\'s very light, stable, simple, and customizable.')
+# pidgin
+# hexchat
+## File Syncing
+insync = App('insync', 'Insync', ['deb', 'pacman'], '')
+nextcloud_client = App('nextcloud-client', 'Nextcloud Sync', ['flatpak', 'pacman', 'apt', 'appimage'], '')
+syncthing_gtk = App('syncthing-gtk', 'Syncthing GTK', ['apt', 'pacman', 'flatpak'], 'A window-based desktop syncthing client with system tray.')
+syncthing = App('syncthing', 'Syncthing', ['apt', 'pacman', 'sh'], 'A light, stable peer-to-peer file syncing client. Uses a web-based UI. For a desktop UI, use Syncthing GTK instead.')
+# owncloud_client = 
+## File Sharing/Getting
+wormhole = App('wormhole', 'Magic Wormhole', ['apt', 'pacman', 'snap'], 'A fast, efficient, and secure peer-to-peer file and text sharing app. Works anywhere, anytime, over any distance.')
+transporter = App('transporter', 'Transporter', ['snap', 'pacman'], 'A GUI frontend for Magic Wormhole.')
+transmission_gtk = App('transmission-gtk', 'Transmission', ['apt', 'pacman', 'flatpak'], 'A simple and very popular BitTorrent client.')
+kTorrent = App('ktorrent', 'kTorrent', ['apt', 'pacman', 'A KDE BitTorrent client.'], '')
+onionshare = App('onionshare', 'OnionShare', ['apt', 'pacman'], 'Securely send any file with many layers of encryption and without leaving a trace.')
+
+# Media
+## Music Players
+rhythmbox = App('rhythmbox', 'Rhythmbox', ['apt', 'pacman', 'flatpak'], 'A simple, popular music player.')
+spotify = App('spotify', 'Spotify', ['snap', 'pacman', 'flatpak'], 'An online music streaming service and local music player.')
+
+## Video Players
+vlc = App('vlc', 'VLC', ['apt', 'snap', 'pacman'], 'Robust media player that will play pretty much anything.')
 
 class AppList(Gtk.Notebook):
     def __init__(self):
