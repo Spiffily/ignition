@@ -55,3 +55,6 @@ App categories will be divided like this (maybe with some small revisions):
   - Super User (aka Hacking tools)
   - Engineering
   - More...
+
+  # Useful Resources
+  https://wiki.voidlinux.org/Rosetta_stone packagment command stuff.
