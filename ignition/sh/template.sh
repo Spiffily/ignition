@@ -91,12 +91,14 @@ elif [[ $operation == 'check' ]]; then
 else
     echo -e '\e[33mUSAGE:\e[0m \e[36m<operation>\e[0m \e[94m<source>\e[0m <version>'
     echo -e '\e[36mOperations:\e[0m install, remove'
-    echo -e '\e[94mSupported sources:\e[0m (More to come...)' 
+    echo -e '\e[94mSupported sources:\e[0m (More to come...)'
     echo '    aptitude (apt)'
     echo '    snappy (snap)'
     echo '    .deb files (deb)'
     echo '    pacman (pacman)'
     echo '    flatpak (flatpak)'
+    echo '    .AppImage (appimage)'
+    echo '    .sh files (sh)'
     echo '    (More to come...)'
     echo
 

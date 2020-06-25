@@ -38,6 +38,7 @@ class App():
 synapse = App('synapse', 'Synapse', ['apt', 'pacman'], 'Semantic app and file launcher. Good alternative to Spotlight.')
 ulauncher = App('ulauncher', 'uLauncher', ['deb', 'pacman'], 'Modern and shiny launcher that provides fuzzy search, extensions, and themes.')
 plank = App('plank', 'Plank', ['apt', 'pacman'], 'Stupidly simple.')
+gnome_pie = App('gnome-pie', 'GNOME Pie', ['apt', 'pacman'], '')
 ## App Centers
 gnome_software = App('gnome-software', 'Gnome Software', ['apt', 'pacman'], 'GNOME\'s graphical software management tool.')
 pling = App('pling', 'Pling Store', ['appimage', 'deb'], '')
@@ -104,6 +105,8 @@ class AppList(Gtk.Notebook):
         row.set_selectable(False)
         catHome.add(row)
 
+        catHomeScroll = Gtk.ScrolledWindow(child=catHome)
+
         ## Personalization
         catPersonalization = Gtk.ListBox()
         catPersonalization.set_selection_mode(Gtk.SelectionMode.BROWSE)
@@ -114,6 +117,7 @@ class AppList(Gtk.Notebook):
         catPersonalization.add(synapse.row())
         catPersonalization.add(ulauncher.row())
         catPersonalization.add(plank.row())
+        catPersonalization.add(gnome_pie.row())
 
         row = Gtk.ListBoxRow()
         row.add(Gtk.Label(label='App Centers'))
@@ -124,6 +128,8 @@ class AppList(Gtk.Notebook):
         catPersonalization.add(discover.row())
         catPersonalization.add(snap_store.row())
         catPersonalization.add(software_boutique.row())
+
+        catPersonalizationScroll = Gtk.ScrolledWindow(child=catPersonalization)
 
         ## Internet
         catInternet = Gtk.ListBox()
@@ -168,9 +174,12 @@ class AppList(Gtk.Notebook):
         catInternet.add(ktorrent.row())
         catInternet.add(onionshare.row())
 
+        catInternetScroll = Gtk.ScrolledWindow(child=catInternet)
+
         ## Media
         catMedia = Gtk.ListBox()
         catMedia.set_selection_mode(Gtk.SelectionMode.BROWSE)
+        catMediaScroll = Gtk.ScrolledWindow(child=catMedia)
 
         row = Gtk.ListBoxRow()
         row.add(Gtk.Label(label='Music Players'))
@@ -185,45 +194,75 @@ class AppList(Gtk.Notebook):
         ## Games
         catGames = Gtk.ListBox()
         catGames.set_selection_mode(Gtk.SelectionMode.BROWSE)
+        catGamesScroll = Gtk.ScrolledWindow(child=catGames)
 
         ## Security
         catSecurity = Gtk.ListBox()
         catSecurity.set_selection_mode(Gtk.SelectionMode.BROWSE)
+        catSecurityScroll = Gtk.ScrolledWindow(child=catSecurity)
 
         ## Office
         catOffice = Gtk.ListBox()
         catOffice.set_selection_mode(Gtk.SelectionMode.BROWSE)
+        catOfficeScroll = Gtk.ScrolledWindow(child=catOffice)
 
         # PROFESSIONAL CATEGORIES
+        catProfessional = Gtk.Notebook()
+
         ## Programming
         catProgramming = Gtk.ListBox()
         catProgramming.set_selection_mode(Gtk.SelectionMode.BROWSE)
+        catProgrammingScroll = Gtk.ScrolledWindow(child=catProgramming)
+
+
+
+        ## Media Production
         catMediaProduction = Gtk.ListBox()
         catMediaProduction.set_selection_mode(Gtk.SelectionMode.BROWSE)
+        catMediaProductionScroll = Gtk.ScrolledWindow(child=catMediaProduction)
+
+        ## Gaming
         catGaming = Gtk.ListBox()
         catGaming.set_selection_mode(Gtk.SelectionMode.BROWSE)
+        catGamingScroll = Gtk.ScrolledWindow(child=catGaming)
+
+        ## SuperUser
         catSuperUser = Gtk.ListBox()
         catSuperUser.set_selection_mode(Gtk.SelectionMode.BROWSE)
+        catSuperUserScroll = Gtk.ScrolledWindow(child=catSuperUser)
+
+        ## Server
+        catServer = Gtk.ListBox()
+        catServer.set_selection_mode(Gtk.SelectionMode.BROWSE)
+        catServerScroll = Gtk.ScrolledWindow(child=catServer)
+
+        ## Engineering
         catEngineering = Gtk.ListBox()
         catEngineering.set_selection_mode(Gtk.SelectionMode.BROWSE)
-
+        catEngineeringScroll = Gtk.ScrolledWindow(child=catEngineering)
 
         # Add pages to Notebook
-        self.insert_page(catHome, Gtk.Label(label='Home'), -1)
-        self.insert_page(catPersonalization, Gtk.Label(label='Personalization'), -1)
-        self.insert_page(catInternet, Gtk.Label(label='Internet'), -1)
-        self.insert_page(catMedia, Gtk.Label(label='Media'), -1)
-        self.insert_page(catGames, Gtk.Label(label='Games'), -1)
-        self.insert_page(catSecurity, Gtk.Label(label='Security'), -1)
-        self.insert_page(catOffice, Gtk.Label(label='Office'), -1)
+        self.insert_page(catHomeScroll, Gtk.Label(label='Home'), -1)
+        self.insert_page(catPersonalizationScroll, Gtk.Label(label='Personalization'), -1)
+        self.insert_page(catInternetScroll, Gtk.Label(label='Internet'), -1)
+        self.insert_page(catMediaScroll, Gtk.Label(label='Media'), -1)
+        self.insert_page(catGamesScroll, Gtk.Label(label='Games'), -1)
+        self.insert_page(catSecurityScroll, Gtk.Label(label='Security'), -1)
+        self.insert_page(catOfficeScroll, Gtk.Label(label='Office'), -1)
+        self.insert_page(catProfessional, Gtk.Label(label='Professional'), -1)
 
-        # self.insert(categories)
+        catProfessional.insert_page(catProgrammingScroll, Gtk.Label(label='Programming'), -1)
+        catProfessional.insert_page(catMediaProductionScroll, Gtk.Label(label='Media Production'), -1)
+        catProfessional.insert_page(catGamingScroll, Gtk.Label(label='Gaming'), -1)
+        catProfessional.insert_page(catSuperUserScroll, Gtk.Label(label='Super User'), -1)
+        catProfessional.insert_page(catServerScroll, Gtk.Label(label='Server'), -1)
+        catProfessional.insert_page(catEngineeringScroll, Gtk.Label(label='Engineering'), -1)
 
 class Window(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self, title="Ignition Layout")
         self.set_border_width(10)
-        self.set_size_request(1024, 720)
+        self.set_size_request(720, 512)
         # self.set_wmclass ("Ignition", "Ignition") # Can be commented out while debuging, but should be uncommented for build
         self.set_icon_from_file(path+'/Armature.svg')
 
