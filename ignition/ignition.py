@@ -72,15 +72,33 @@ wormhole = App('wormhole', 'Magic Wormhole', ['apt', 'pacman', 'snap'], 'A fast,
 transporter = App('transporter', 'Transporter', ['snap', 'pacman'], 'A GUI frontend for Magic Wormhole.')
 transmission_gtk = App('transmission-gtk', 'Transmission', ['apt', 'pacman', 'flatpak'], 'A simple and very popular BitTorrent client.')
 ktorrent = App('ktorrent', 'kTorrent', ['apt', 'pacman', 'A KDE BitTorrent client.'], '')
+fragments = App('fragments', 'Fragments', ['snap', 'pacman', 'flatpak'], 'A simple GTK BitTorrent client.')
 onionshare = App('onionshare', 'OnionShare', ['apt', 'pacman'], 'Securely send any file with many layers of encryption and without leaving a trace.')
 
 # Media
+## Multimedia Players
+vlc = App('vlc', 'VLC', ['apt', 'snap', 'pacman'], 'Robust media player that will play pretty much anything you throw at it.')
+parole = App('parole', 'Parole', ['apt', ''], 'Modern and simple media player. Very light.')
+celluloid = App('celluloid', 'Celluloid', ['apt', 'pacman'], 'Simple GTK+ frontend for mpv.')
+mpv = App('mpv', 'mpv Media Player', ['apt', 'pacman'], 'A versatile media player backend. Can be operated from the command line or with a frontend like Celluloid.')
+
 ## Music Players
+lollypop = App('lollypop', 'Lollypop' ['apt', 'pacman', 'flatpak'], 'An all-in-one music playing and streaming service. With a layout similar to Microsoft\'s Groove Music, this powerful yet simple app can stream from YouTube, Spotify and more, or play local files. It also has a builtin album cover detection service and even a lyric detection service.')
 rhythmbox = App('rhythmbox', 'Rhythmbox', ['apt', 'pacman', 'flatpak'], 'A simple, popular music player.')
 spotify = App('spotify', 'Spotify', ['snap', 'pacman', 'flatpak'], 'An online music streaming service and local music player.')
+audacious = App('audacious', 'Audacious', ['apt', 'pacman'], 'A light, basic playlist based music player.')
+clementine = App('clementine', 'Clementine', ['apt', 'pacman', 'snap', 'flatpak'], 'Plays music files and Internet radio.')
 
 ## Video Players
-vlc = App('vlc', 'VLC', ['apt', 'snap', 'pacman'], 'Robust media player that will play pretty much anything.')
+totem = App('totem', 'GNOME Videos', ['apt', 'pacman', 'flatpak'], 'Play movies.')
+dragon = App('dragonplayer', 'Dragon Player', ['apt', 'pacman', 'snap'], 'A KDE side video player with focus on simplicity.')
+slowmovideo = App('slowmovideo', 'slowmoUI', ['apt', 'pacman'], 'Slow Motion Video')
+stretchplayer = App('stretchplayer', 'StretchPlayer', ['apt', 'pacman'], 'Audio file player with time stretch.')
+
+## Discs (Compact Discs, Digital Video Discs, etc.)
+brasero = App('brasero', 'Brasero', ['apt', 'pacman'], 'A stable and powerful disc manipulation tool.')
+asunder = App('asunder', 'Asunder CD Ripper', ['apt', 'pacman'], 'An application to save tracks from an Audio CD as WAV, MP3, OGG, FLAC, and/or Wavpack.')
+
 
 # class Header(Gtk.Label, text):
 #     def __init__(self):
