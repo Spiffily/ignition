@@ -10,6 +10,8 @@ from gi.repository import Gtk, GLib
 
 data = home+'/.local/share/ignition/'
 config = home+'/.config/ignition/'
+desktop_session = os.environ['XDG_CURRENT_DESKTOP'].lower()
+# desktop_session = 'gnome'
 system('mkdir '+data)
 system('mkdir '+config)
 labelpadding = 3
@@ -260,22 +262,42 @@ class AppList(Gtk.Notebook):
 
 class Window(Gtk.Window):
     def __init__(self):
-        Gtk.Window.__init__(self, title="Ignition Layout")
-        self.set_border_width(10)
+        Gtk.Window.__init__(self, title="Ignition")
+        self.set_border_width(3)
         self.set_size_request(720, 512)
         # self.set_wmclass ("Ignition", "Ignition") # Can be commented out while debuging, but should be uncommented for build
         self.set_icon_from_file(path+'/Armature.svg')
 
         apps_to_install = [] # The master list of apps to be installed.
-        head = Gtk.HeaderBar()
-        self.set_titlebar(head)
-        head.set_title('Ignition')
-        head.set_show_close_button(True)
+        categories = AppList()
+        # toggle = Gtk.ComboBox()   # TODO: In future, I want this to look more like the 'Songs/Categories' toggle in Rhythmbox.
+        # menu_selection_button = Gtk.ToggleButton.new_with_label("Main")
+        menu_qeue_button = Gtk.ToggleButton(label="Qeue")
         install_button = Gtk.Button(label='Install')
         # install_button.connect('clicked', self.install)
-        # show_qeue_button = Gtk.Button(label='Qeue')
-        head.pack_end(install_button) #pack Install button
-        # head.pack_end(show_qeue_button) #pack Qeue button
+
+        print(desktop_session)
+        if (desktop_session == 'gnome'):
+            head = Gtk.HeaderBar()
+            self.set_titlebar(head)
+            head.set_title("Ignition")
+            head.set_show_close_button(True)
+
+            head.pack_start(menu_qeue_button)
+            head.pack_end(install_button) #pack Install button
+
+            self.add(categories)
+        else:
+            head = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, )
+            head.pack_start(menu_qeue_button, False, False, 0)
+            head.pack_end(install_button, False, False, 0)
+
+            body = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+            body.pack_start(head, False, False, 0)
+            body.pack_end(categories, True, True, 0)
+
+            self.add(body)
+
         painsize = 610
 
         pains = Gtk.Paned()
@@ -289,8 +311,6 @@ class Window(Gtk.Window):
         categoryselect.set_show_border(True)
         # self.add(pains)
 
-        categories = AppList()
-        self.add(categories)
 
 
 win = Window()
