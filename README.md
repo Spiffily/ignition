@@ -1,9 +1,26 @@
-# Ignition
-[![Version](https://img.shields.io/badge/version-0.0.4-blueviolet)](https://github.com/Spiffily/ignition) [![Code Size](https://img.shields.io/badge/app%20size-63.9%C2%A0kB-yellowgreen)](https://github.com/Spiffily/ignition) [![Build Status](https://travis-ci.org/Spiffily/ignition.svg?branch=master)](https://travis-ci.org/Spiffily/ignition) [![Join the chat at https://gitter.im/Spiffily/ignition](https://badges.gitter.im/Spiffily/ignition.svg)](https://gitter.im/Spiffily/ignition?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+<h1 align=center>Ignition</h1>
+
+<div align=center>
+  <a href="https://github.com/Spiffily/ignition">
+  <img  alt="Version" src="https://img.shields.io/badge/version-0.0.4-blueviolet" />
+  </a>
+  <a href="https://github.com/Spiffily/ignition">
+  <img  alt="Code Size" src="https://img.shields.io/badge/app%20size-63.9%C2%A0kB-yellowgreen" />
+  </a>
+  <a href="https://travis-ci.org/Spiffily/ignition">
+  <img  alt="Build Status" src="https://travis-ci.org/Spiffily/ignition.svg?branch=master" />
+  </a>
+  <a href="https://gitter.im/Spiffily/ignition?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge">
+  <img  alt="Join the chat at https://gitter.im/Spiffily/ignition" src="https://badges.gitter.im/Spiffily/ignition.svg" />
+  </a>
+</div>
+
+<!-- [![Version](https://img.shields.io/badge/version-0.0.4-blueviolet)](https://github.com/Spiffily/ignition) [![Code Size](https://img.shields.io/badge/app%20size-63.9%C2%A0kB-yellowgreen)](https://github.com/Spiffily/ignition) [![Build Status](https://travis-ci.org/Spiffily/ignition.svg?branch=master)](https://travis-ci.org/Spiffily/ignition) [![Join the chat at https://gitter.im/Spiffily/ignition](https://badges.gitter.im/Spiffily/ignition.svg)](https://gitter.im/Spiffily/ignition?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) -->
 
 Hit the ground running on your fresh Linux installation.
 
 Download for testing here:
+
 <a href="https://snapcraft.io/ignition">
 <img alt="Get it from the Snap Store" src="https://snapcraft.io/static/images/badges/en/snap-store-black.svg" />
 </a>
