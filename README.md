@@ -1,5 +1,5 @@
 <div align=center>
-<img src="Armature.svg" width="128" />
+<img src="Armature.svg" width="100" />
 
 # Ignition
 
