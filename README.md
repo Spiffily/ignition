@@ -49,7 +49,7 @@ The Linux world is full of apps. You could be looking for an app that does somet
 
 ### Package Managers
 
-<div align=right>
+<div align=left>
 
 The system would be divided into package manager options. The italicized options would be available later:
 - apt
@@ -68,7 +68,7 @@ The system would be divided into package manager options. The italicized options
 
 ### App Categories
 
-<div align=right>
+<div align=left>
 
 App categories will be divided like this (maybe with some small revisions):
 - Personalization
