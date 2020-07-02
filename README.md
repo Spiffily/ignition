@@ -1,10 +1,9 @@
 # Ignition
-Version 0.0.4 [![Build Status](https://travis-ci.org/Spiffily/ignition.svg?branch=master)](https://travis-ci.org/Spiffily/ignition) [![Join the chat at https://gitter.im/Spiffily/ignition](https://badges.gitter.im/Spiffily/ignition.svg)](https://gitter.im/Spiffily/ignition?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Version](https://img.shields.io/badge/version-0.0.4-blueviolet)](https://github.com/Spiffily/ignition) [![Code Size](https://img.shields.io/badge/app%20size-63.9%C2%A0kB-yellowgreen)](https://github.com/Spiffily/ignition) [![Build Status](https://travis-ci.org/Spiffily/ignition.svg?branch=master)](https://travis-ci.org/Spiffily/ignition) [![Join the chat at https://gitter.im/Spiffily/ignition](https://badges.gitter.im/Spiffily/ignition.svg)](https://gitter.im/Spiffily/ignition?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Hit the ground running on your fresh Ubuntu installation.
+Hit the ground running on your fresh Linux installation.
 
 Download for testing here:
-
 <a href="https://snapcraft.io/ignition">
 <img alt="Get it from the Snap Store" src="https://snapcraft.io/static/images/badges/en/snap-store-black.svg" />
 </a>
@@ -13,14 +12,14 @@ Download for testing here:
 
 The Linux world is full of apps. You could be looking for an app that does something, only to find that there are literally hundreds of options. Ignition will show you common apps for certain categories and explain their little nuances in an easy format. Just choose the ones to install, and Ignition will start the engine.
 
-  This app is still in `development/alpha`. It isn't fully functional and should only be used for development and testing purposes.
+  This app is still in alpha. It isn't fully functional and should only be used for development and testing purposes.
 
-  ## Status
+## Status
 
 | Item    | Status     | Description |
 | ------- | ---------- | ---------- |
 | app     | pre-alpha  | -- |
-| run     | good       | `python3 ignition.py` |
+| run     | good       | `python3 ignition.py` or `./ignition.py` |
 | build   | good       | Still confused about this process, but snapcraft builds it fine. |
 | publish | **error**  | Learn, debug, work - Error: `/snap/ignition/2/usr/bin/python3: can't open file 'ignition.py': [Errno 2] No such file or directory` |
 | backend | *rebuilding* | Rebuilding to use a flexible bash script-based backend. |
@@ -31,14 +30,18 @@ The Linux world is full of apps. You could be looking for an app that does somet
 ## Ideas
 
 ### Package Managers
-The system would be divided into package manager options. The italicized options would be available right away:
-- _apt_
-- _snapd_
-- _.deb_
-- _flatpak_
-- npm
+The system would be divided into package manager options. The italicized options would be available later:
+- apt
+- pacman *(pacman and aur both fall under this name)*
+- snapd
+- .deb
+- flatpak
 - .AppImage
-- _.sh_
+- *.rpm*
+- *dnf*
+- .sh (Custom script)
+- *npm*
+- *apm*
 
 ### App Categories
 App categories will be divided like this (maybe with some small revisions):
