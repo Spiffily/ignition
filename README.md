@@ -74,14 +74,15 @@ App categories will be divided like this (maybe with some small revisions):
 - Personalization
 - Internet
 - Media
-- Games (different from Gaming)
+- Games (little desktop games like solitaire)
 - Security
 - Office
-- Professional (I think this needs a different name)
+- Professional (I think this could use a different name)
   - Programming
   - Media Production
-  - Gaming
-  - Super User (aka Hacking tools)
+  - Gaming (this category is for more serious games like Minecraft and Steam)
+  - Super User (aka hacking software and advanced tools)
+  - Server (services that can do things for other computers)
   - Engineering
   - More...
 
