@@ -13,7 +13,6 @@
   <a href="https://gitter.im/Spiffily/ignition?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge">
   <img  alt="Join the chat at https://gitter.im/Spiffily/ignition" src="https://badges.gitter.im/Spiffily/ignition.svg" />
   </a>
-</div>
 
 <!-- [![Version](https://img.shields.io/badge/version-0.0.4-blueviolet)](https://github.com/Spiffily/ignition) [![Code Size](https://img.shields.io/badge/app%20size-63.9%C2%A0kB-yellowgreen)](https://github.com/Spiffily/ignition) [![Build Status](https://travis-ci.org/Spiffily/ignition.svg?branch=master)](https://travis-ci.org/Spiffily/ignition) [![Join the chat at https://gitter.im/Spiffily/ignition](https://badges.gitter.im/Spiffily/ignition.svg)](https://gitter.im/Spiffily/ignition?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) -->
 
@@ -78,3 +77,5 @@ App categories will be divided like this (maybe with some small revisions):
 
   # Useful Resources
   https://wiki.voidlinux.org/Rosetta_stone packagment command stuff.
+  
+</div>
