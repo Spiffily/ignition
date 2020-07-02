@@ -1,6 +1,7 @@
-<h1 align=center>Ignition</h1>
-
 <div align=center>
+<img src="Armature.svg" width="128" />
+# Ignition
+
   <a href="https://github.com/Spiffily/ignition">
   <img  alt="Version" src="https://img.shields.io/badge/version-0.0.4-blueviolet" />
   </a>
@@ -75,7 +76,7 @@ App categories will be divided like this (maybe with some small revisions):
   - Engineering
   - More...
 
-  # Useful Resources
+  ## Other Useful Resources
   https://wiki.voidlinux.org/Rosetta_stone packagment command stuff.
-  
+
 </div>
