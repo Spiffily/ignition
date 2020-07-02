@@ -1,5 +1,6 @@
 <div align=center>
 <img src="Armature.svg" width="128" />
+
 # Ignition
 
   <a href="https://github.com/Spiffily/ignition">
@@ -47,6 +48,9 @@ The Linux world is full of apps. You could be looking for an app that does somet
 ## Ideas
 
 ### Package Managers
+
+<div align=right>
+
 The system would be divided into package manager options. The italicized options would be available later:
 - apt
 - pacman *(pacman and aur both fall under this name)*
@@ -60,7 +64,12 @@ The system would be divided into package manager options. The italicized options
 - *npm*
 - *apm*
 
+</div>
+
 ### App Categories
+
+<div align=right>
+
 App categories will be divided like this (maybe with some small revisions):
 - Personalization
 - Internet
@@ -75,6 +84,8 @@ App categories will be divided like this (maybe with some small revisions):
   - Super User (aka Hacking tools)
   - Engineering
   - More...
+
+</div>
 
   ## Other Useful Resources
   https://wiki.voidlinux.org/Rosetta_stone packagment command stuff.
