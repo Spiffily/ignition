@@ -60,7 +60,7 @@ The system would be divided into package manager options. The italicized options
 - .AppImage
 - *.rpm*
 - *dnf*
-- .sh (Custom script)
+- .sh (Custom scripts)
 - *npm*
 - *apm*
 
@@ -80,7 +80,7 @@ App categories will be divided like this (maybe with some small revisions):
 - Professional (I think this could use a different name)
   - Programming
   - Media Production
-  - Gaming (this category is for more serious games like Minecraft and Steam)
+  - Gaming (more serious games like Minecraft and Steam)
   - Super User (aka hacking software and advanced tools)
   - Server (services that can do things for other computers)
   - Engineering
