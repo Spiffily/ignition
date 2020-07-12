@@ -16,6 +16,8 @@ system('mkdir '+data)
 system('mkdir '+config)
 labelpadding = 3
 
+apps_to_install = ["vlc", "vivaldi"] # The master list of apps to be installed.
+
 class App():
     def __init__(self, package, name, sources, description):
         self.package = package
@@ -83,7 +85,7 @@ celluloid = App('celluloid', 'Celluloid', ['apt', 'pacman'], 'Simple GTK+ fronte
 mpv = App('mpv', 'mpv Media Player', ['apt', 'pacman'], 'A versatile media player backend. Can be operated from the command line or with a frontend like Celluloid.')
 
 ## Music Players
-lollypop = App('lollypop', 'Lollypop' ['apt', 'pacman', 'flatpak'], 'An all-in-one music playing and streaming service. With a layout similar to Microsoft\'s Groove Music, this powerful yet simple app can stream from YouTube, Spotify and more, or play local files. It also has a builtin album cover detection service and even a lyric detection service.')
+lollypop = App('lollypop', 'Lollypop', ['apt', 'pacman', 'flatpak'], 'An all-in-one music playing and streaming service. With a layout similar to Microsoft\'s Groove Music, this powerful yet simple app can stream from YouTube, Spotify and more, or play local files. It also has a builtin album cover detection service and even a lyric detection service.')
 rhythmbox = App('rhythmbox', 'Rhythmbox', ['apt', 'pacman', 'flatpak'], 'A simple, popular music player.')
 spotify = App('spotify', 'Spotify', ['snap', 'pacman', 'flatpak'], 'An online music streaming service and local music player.')
 audacious = App('audacious', 'Audacious', ['apt', 'pacman'], 'A light, basic playlist based music player.')
@@ -100,14 +102,6 @@ brasero = App('brasero', 'Brasero', ['apt', 'pacman'], 'A stable and powerful di
 asunder = App('asunder', 'Asunder CD Ripper', ['apt', 'pacman'], 'An application to save tracks from an Audio CD as WAV, MP3, OGG, FLAC, and/or Wavpack.')
 
 
-# class Header(Gtk.Label, text):
-#     def __init__(self):
-#         Gtk.Label.__init__(self)
-#         # self.text = text
-#
-#     def put(self, text):
-#         self.set_text(self.text)
-#         return(self)
 
 class AppList(Gtk.Notebook):
     def __init__(self):
@@ -278,6 +272,20 @@ class AppList(Gtk.Notebook):
         catProfessional.insert_page(catServerScroll, Gtk.Label(label='Server'), -1)
         catProfessional.insert_page(catEngineeringScroll, Gtk.Label(label='Engineering'), -1)
 
+class Queue(Gtk.Box):
+    def __init__(self):
+        Gtk.Box.__init__(self)
+
+        list = Gtk.ListBox()
+        hi = Gtk.Label(label="Hello")
+        self.pack_start(list, True, True, 0)
+
+        # for app in apps_to_install:
+        #     list.add(app.row())
+
+        # self.pack_start(list, True, True, 0)
+
+
 class Window(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self, title="Ignition")
@@ -286,48 +294,58 @@ class Window(Gtk.Window):
         # self.set_wmclass ("Ignition", "Ignition") # Can be commented out while debuging, but should be uncommented for build
         self.set_icon_from_file(path+'/Armature.svg')
 
-        apps_to_install = [] # The master list of apps to be installed.
         categories = AppList()
+        queue = Queue()
+        # queue = Gtk.Label(label="Qeeew")
+
         # toggle = Gtk.ComboBox()   # TODO: In future, I want this to look more like the 'Songs/Categories' toggle in Rhythmbox.
         # menu_selection_button = Gtk.ToggleButton.new_with_label("Main")
-        menu_qeue_button = Gtk.ToggleButton(label="Qeue")
-        install_button = Gtk.Button(label='Install')
+        # menu_switcher = Gtk.ToggleButton(label="Qeue")
+        menu_switcher = Gtk.Stack()
+        menu_switcher.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT_RIGHT)
+        menu_switcher.set_transition_duration(1000)
+        menu_switcher.add_titled(categories, "box", "Apps")
+        menu_switcher.add_titled(queue, "label", "Queue")
+        menu_switcher_button = Gtk.StackSwitcher()
+        menu_switcher_button.set_stack(menu_switcher)
+
+        install_button = Gtk.Button(label="Install")
         # install_button.connect('clicked', self.install)
 
-        print(desktop_session)
-        if (desktop_session == 'gnome'):
+        print("Desktop Environment: "+desktop_session)
+        if ("gnome" in desktop_session):
             head = Gtk.HeaderBar()
             self.set_titlebar(head)
             head.set_title("Ignition")
             head.set_show_close_button(True)
 
-            head.pack_start(menu_qeue_button)
+            head.pack_start(menu_switcher_button)
             head.pack_end(install_button) #pack Install button
 
-            self.add(categories)
+            self.add(menu_switcher)
         else:
             head = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, )
-            head.pack_start(menu_qeue_button, False, False, 0)
+            head.pack_start(menu_switcher_button, False, False, 0)
             head.pack_end(install_button, False, False, 0)
 
             body = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
             body.pack_start(head, False, False, 0)
-            body.pack_end(categories, True, True, 0)
+            body.pack_end(menu_switcher, True, True, 0)
 
             self.add(body)
 
         painsize = 610
 
-        pains = Gtk.Paned()
-        categoryselect = Gtk.Notebook()
-        queue = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
-        pains.add1(categoryselect)
-        # pains.add2(queue)
-        pains.set_position(1024)
-        pains.set_wide_handle(True)
-        categoryselect.set_show_tabs(True)
-        categoryselect.set_show_border(True)
-        # self.add(pains)
+        # pains = Gtk.Paned()
+        # categoryselect = Gtk.Notebook()
+        # queue = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        # pains.add1(categoryselect)
+        # # pains.add2(queue)
+        # pains.set_position(1024)
+        # pains.set_wide_handle(True)
+        # categoryselect.set_show_tabs(True)
+        # categoryselect.set_show_border(True)
+        # # self.add(pains)
 
 
 
